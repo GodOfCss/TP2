@@ -60,74 +60,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a1"
-                android:src="@mipmap/upperleft_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upperleft_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a2"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a3"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a4"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a5"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a6"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a7"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a8"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upper_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_a9"
-                android:src="@mipmap/upperleft_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/upperleft_go_background"
+                android:scaleX="-2"
+                android:scaleY="2" />
 
         </TableRow>
         <TableRow>
@@ -136,74 +127,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:scaleX="2"
+                android:scaleY="2"
+                android:background="@mipmap/left_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_b9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
 
         </TableRow>
         <TableRow>
@@ -212,74 +194,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:scaleX="2"
+                android:scaleY="2"
+                android:background="@mipmap/left_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_c9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
         </TableRow>
         <TableRow>
             <ImageButton
@@ -287,74 +260,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:background="@mipmap/left_go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_d9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
 
         </TableRow>
         <TableRow>
@@ -363,74 +327,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:background="@mipmap/left_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_e9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
         </TableRow>
         <TableRow>
             <ImageButton
@@ -438,74 +393,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:background="@mipmap/left_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_f9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
         </TableRow>
         <TableRow>
             <ImageButton
@@ -513,74 +459,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:background="@mipmap/left_go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_g9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
         </TableRow>
         <TableRow>
             <ImageButton
@@ -588,74 +525,65 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@mipmap/left_go_background" />
+                android:background="@mipmap/left_go_background"
+                android:scaleX="2"
+                android:scaleY="2" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h2"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h3"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h4"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h5"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h6"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h7"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h8"
-                android:src="@mipmap/go_background"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/go_background"
+                android:scaleX="2"
+                android:scaleY="2"/>
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_h9"
-                android:src="@mipmap/left_go_background"
-                android:scaleX="-1"
-                android:scaleY="1"
-                android:background="@color/black"/>
+                android:background="@mipmap/left_go_background"
+                android:scaleX="-2"
+                android:scaleY="2"/>
         </TableRow>
         <TableRow>
             <ImageButton
@@ -663,74 +591,66 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:background="@color/black"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:src="@mipmap/upperleft_go_background" />
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upperleft_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i2"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i3"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i4"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i5"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i6"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i7"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i8"
-                android:src="@mipmap/upper_go_background"
-                android:scaleX="1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+                android:scaleX="2"
+                android:scaleY="-2"
+                android:background="@mipmap/upper_go_background" />
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/go_i9"
-                android:src="@mipmap/upperleft_go_background"
-                android:scaleX="-1"
-                android:scaleY="-1"
-                android:background="@color/black"/>
+
+                android:scaleX="-2"
+                android:scaleY="-2"
+                android:background="@mipmap/upperleft_go_background" />
         </TableRow>
 
     </TableLayout>
