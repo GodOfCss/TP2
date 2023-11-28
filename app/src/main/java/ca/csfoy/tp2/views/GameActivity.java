@@ -68,14 +68,15 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.update();
         ImageButton currentButton = (ImageButton) view;
         int id = currentButton.getId();
-        if(controller.isBlackNext()){
-            currentButton.setImageResource(R.mipmap.go_black_piece);
-        }
-        else{
-            currentButton.setImageResource(R.mipmap.go_white_piece);
-        }
+        if(!controller.isPlayed(id)) {
+            if (controller.isBlackNext()) {
+                currentButton.setImageResource(R.mipmap.go_black_piece);
+            } else {
+                currentButton.setImageResource(R.mipmap.go_white_piece);
+            }
 
-        this.currentPlay = currentButton;
+            this.currentPlay = currentButton;
+        }
     }
 
     public void update() {
