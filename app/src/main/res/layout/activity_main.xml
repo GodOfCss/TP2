@@ -8,6 +8,8 @@
     tools:context=".views.MainActivity">
 
     <TextView
+        android:scaleX="2"
+        android:scaleY="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -27,6 +29,8 @@
         android:src="@mipmap/gologo"
         app:cornerRadius="100dp" />
     <TextView
+        android:scaleX="1.5"
+        android:scaleY="1.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
