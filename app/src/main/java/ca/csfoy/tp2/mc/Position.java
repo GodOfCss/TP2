@@ -1,50 +1,50 @@
 package ca.csfoy.tp2.mc;
 
 public class Position {
-    private Coordinates xPosition;
-    private Coordinates yPosition;
+    private Coordinates YPosition;
+    private Coordinates XPosition;
 
-    public Position(Coordinates xPosition, Coordinates yPosition){
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+    public Position(Coordinates XPosition, Coordinates YPosition){
+        this.YPosition = YPosition;
+        this.XPosition = XPosition;
     }
     public Coordinates getYPosition() {
-        return yPosition;
+        return YPosition;
     }
 
     public Coordinates getXPosition() {
-        return xPosition;
+        return XPosition;
     }
 
     public void setXPosition(Coordinates xPosition){
-        this.xPosition = xPosition;
+        this.XPosition = xPosition;
     }
 
     public void setYPosition(Coordinates yPosition){
-        this.yPosition = yPosition;
+        this.YPosition = yPosition;
     }
 
     public Position getPositionLeft(){
-        if(xPosition.ordinal() == 0) return null;
-        return new Position(Coordinates.values()[xPosition.ordinal() - 1] , yPosition);
+        if(XPosition.ordinal() == 0) return null;
+        return new Position(Coordinates.values()[XPosition.ordinal() - 1] , YPosition);
     }
 
     public Position getPositionRight(){
-        if(xPosition.ordinal() == 8) return null;
-        return new Position(Coordinates.values()[xPosition.ordinal() + 1] , yPosition);
+        if(XPosition.ordinal() == 8) return null;
+        return new Position(Coordinates.values()[XPosition.ordinal() + 1] , YPosition);
     }
 
     public Position getPositionUp(){
-        if(yPosition.ordinal() == 0) return null;
-        return new Position(xPosition , Coordinates.values()[yPosition.ordinal() - 1]);
+        if(YPosition.ordinal() == 0) return null;
+        return new Position(XPosition, Coordinates.values()[YPosition.ordinal() - 1]);
     }
     public Position getPositionDown(){
-        if(yPosition.ordinal() == 8) return null;
-        return new Position(xPosition , Coordinates.values()[yPosition.ordinal() + 1]);
+        if(YPosition.ordinal() == 8) return null;
+        return new Position(XPosition, Coordinates.values()[YPosition.ordinal() + 1]);
     }
 
     public boolean equals(Position position){
-        if(this.yPosition == position.yPosition && this.xPosition == position.xPosition) return true;
+        if(this.XPosition == position.XPosition && this.YPosition == position.YPosition) return true;
 
         return false;
     }
