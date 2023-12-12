@@ -481,17 +481,22 @@ public class GoModelController {
     }
 
     public void setWinner(Teams winningTeam) {
-        switch(winningTeam){
-            case WHITE:
-                this.hasWhiteWon = true;
-                break;
-            case BLACK:
-                this.hasBlackWon = true;
-                break;
-            default:
-                this.hasBlackWon = false;
-                this.hasWhiteWon = false;
-                break;
+        if(winningTeam != null){
+            switch(winningTeam) {
+                case WHITE:
+                    this.hasWhiteWon = true;
+                    break;
+                case BLACK:
+                    this.hasBlackWon = true;
+                    break;
+                default:
+                    this.hasBlackWon = false;
+                    this.hasWhiteWon = false;
+                    break;
+            }
+        } else {
+            this.hasBlackWon = false;
+            this.hasWhiteWon = false;
         }
     }
 

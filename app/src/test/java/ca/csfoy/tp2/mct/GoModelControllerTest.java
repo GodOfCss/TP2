@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import ca.csfoy.tp2.mc.GoModelController;
+import ca.csfoy.tp2.mc.Teams;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -342,5 +343,55 @@ public class GoModelControllerTest {
         assertTrue(controller.hasWhiteWon());
     }
 
+    @Test
+    public void goModelController_CanReturnThatGameIsNotOver() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        //Act
+        boolean isGameOver = controller.isGameOver();
+        //Assert
+        assertFalse(isGameOver);
+    }
 
+    @Test
+    public void goModelController_CanSetThatWhiteHasWon() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        //Act
+        controller.setWinner(Teams.WHITE);
+        //Assert
+        assertTrue(controller.hasWhiteWon());
+    }
+
+    @Test
+    public void goModelController_CanSetThatBlackHasWon() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        //Act
+        controller.setWinner(Teams.BLACK);
+        //Assert
+        assertTrue(controller.hasBlackWon());
+    }
+
+    @Test
+    public void goModelController_CanSetThatNoOneHasWon() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        //Act
+        controller.setWinner(null);
+        //Assert
+        assertFalse(controller.hasBlackWon());
+        assertFalse(controller.hasWhiteWon());
+    }
+
+    @Test
+    public void goModelController_CanCancelLastMove() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        controller.play("a1");
+        //Act
+        controller.cancel();
+        //Assert
+        assertFalse(controller.isPlayed("a1"));
+    }
 }

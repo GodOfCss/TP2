@@ -22,6 +22,8 @@ public class GameActivity extends AppCompatActivity implements GoView {
     private Button resignButton;
     private Button cancelButton;
     private Button playButton;
+    private ImageButton backButton;
+    private ImageButton forwardButton;
     private ImageButton currentPlay;
     private GoModelController controller = new GoModelController();
 
@@ -33,6 +35,8 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.resignButton = findViewById(R.id.resignButton);
         this.playButton = findViewById(R.id.playButton);
         this.cancelButton = findViewById(R.id.cancelButton);
+        this.forwardButton = findViewById(R.id.forwardButton);
+        this.backButton = findViewById(R.id.backButton);
 
         playButton.setOnClickListener(this::OnPlay);
         resignButton.setOnClickListener(this::OnResign);
