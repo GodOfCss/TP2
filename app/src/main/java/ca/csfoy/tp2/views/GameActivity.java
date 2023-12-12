@@ -22,6 +22,8 @@ public class GameActivity extends AppCompatActivity implements GoView {
     private Button resignButton;
     private Button cancelButton;
     private Button playButton;
+    private ImageButton backButton;
+    private ImageButton forwardButton;
     private ImageButton currentPlay;
     private GoModelController controller = new GoModelController();
 
@@ -33,10 +35,14 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.resignButton = findViewById(R.id.resignButton);
         this.playButton = findViewById(R.id.playButton);
         this.cancelButton = findViewById(R.id.cancelButton);
+        this.forwardButton = findViewById(R.id.forwardButton);
+        this.backButton = findViewById(R.id.backButton);
 
         playButton.setOnClickListener(this::OnPlay);
         resignButton.setOnClickListener(this::OnResign);
         cancelButton.setOnClickListener(this::OnCancel);
+        backButton.setOnClickListener(this::OnBack);
+        forwardButton.setOnClickListener(this::OnForward);
 
         for(int i = 0; i < GAME_DIMENSIONS; i++){
             for(int j = 1; j <= GAME_DIMENSIONS; j++) {
@@ -52,6 +58,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
             controller.setLastPlayed(savedInstanceState.getString("LAST_PLAYED"));
             controller.setWhitePlayed(savedInstanceState.getStringArrayList("PLAYED_WHITE"));
             controller.setBlackPlayed(savedInstanceState.getStringArrayList("PLAYED_BLACK"));
+            controller.setOffset(savedInstanceState.getInt("CURRENT_HISTORY_OFFSET"));
             controller.updatePlayedSpots();
 
             if(savedInstanceState.getBoolean("HAS_BLACK_WON")){
@@ -65,6 +72,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
             }
 
         }
+        this.update();
 
     }
     @Override
@@ -75,13 +83,19 @@ public class GameActivity extends AppCompatActivity implements GoView {
         outState.putStringArrayList("PLAYED_WHITE", controller.getPlayedWhiteSpots());
         outState.putStringArrayList("PLAYED_BLACK", controller.getPlayedBlackSpots());
         outState.putString("LAST_PLAYED", controller.getLastPlayed());
+        outState.putInt("CURRENT_HISTORY_OFFSET", controller.getOffset());
         super.onSaveInstanceState(outState);
     }
 
     private void OnPlay(View view) {
-        if(currentPlay != null){
-            controller.play(getPositionFromResource(currentPlay.getId()));
-            currentPlay = null;
+        if(controller.getOffset() == 0) {
+            if (currentPlay != null) {
+                controller.play(getPositionFromResource(currentPlay.getId()));
+                currentPlay = null;
+            }
+        } else {;
+            controller.play("nullPos");
+            playButton.setText("Play");
         }
         this.update();
 
@@ -104,7 +118,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
 
 
     private void OnClickBoard(View view) {
-        if(!controller.isGameOver()){
+        if(!controller.isGameOver() && controller.getOffset() == 0){
             this.update();
             ImageButton currentButton = (ImageButton) view;
             int id = currentButton.getId();
@@ -126,6 +140,9 @@ public class GameActivity extends AppCompatActivity implements GoView {
     }
 
     public void update() {
+        if(controller.getOffset() != 0) playButton.setText("Back To Play");
+        else  playButton.setText("Play");
+
         if(controller.isGameOver()){
             if(controller.hasBlackWon()){
                 blackWin();
@@ -155,7 +172,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
             }
         }
 
-        String lastPosition = controller.getLastPlayed();
+        String lastPosition = controller.getLastPlayedInHistory();
         if(lastPosition != "" && lastPosition != null){
             ImageButton lastPlayed = getButtonFromPosition(lastPosition);
             if(lastPlayed != null) {
@@ -200,5 +217,17 @@ public class GameActivity extends AppCompatActivity implements GoView {
         controller.cancel();
         this.update();
     }
+
+    private void OnForward(View view) {
+        controller.forward();
+        this.update();
+
+    }
+
+    private void OnBack(View view) {
+        controller.back();
+        this.update();
+    }
+
 
 }
