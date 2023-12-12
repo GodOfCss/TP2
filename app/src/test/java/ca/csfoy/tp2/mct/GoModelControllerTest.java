@@ -399,4 +399,51 @@ public class GoModelControllerTest {
         assertEquals(0, controller.getPlayedWhiteSpots().size());
 
     }
+
+    @Test
+    public void goModelController_CanGoBackInHistory() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        controller.play("a1");
+        //Act
+        controller.back();
+        //Assert
+        assertNull(controller.getLastPlayedInHistory());
+        assertEquals(-1, controller.getOffset());
+
+    }
+
+    @Test
+    public void goModelController_CanGoForwardInHistory() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        controller.play("a1");
+        controller.play("a2");
+        controller.back();
+        controller.back();
+        //Act
+        controller.forward();
+
+        //Assert
+        assertEquals("a1", controller.getLastPlayedInHistory());
+        assertEquals(-1, controller.getOffset());
+
+    }
+
+    @Test
+    public void goModelController_CanGoSetHistory() {
+        //Arrange
+        GoModelController controller = new GoModelController();
+        controller.play("a1");
+        controller.play("a2");
+        controller.play("a3");
+        //Act
+        controller.setOffset(-2);
+
+        //Assert
+        assertEquals("a1", controller.getLastPlayedInHistory());
+        assertEquals(-2, controller.getOffset());
+
+    }
+
 }

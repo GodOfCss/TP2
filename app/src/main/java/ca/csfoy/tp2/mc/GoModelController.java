@@ -11,6 +11,7 @@ public class GoModelController {
     private ArrayList<Position> playedWhiteSpots;
     private ArrayList<Position> playedSpots;
     private Position lastPlayed;
+    private int playedOffset;
 
 
     public GoModelController() {
@@ -18,11 +19,17 @@ public class GoModelController {
         this.playedWhiteSpots = new ArrayList<Position>();
         this.playedBlackSpots = new ArrayList<Position>();
         this.playedSpots = new ArrayList<Position>();
+        this.playedOffset = 0;
 
     }
 
     public void play(String position) {
-        if(!hasBlackWon && !hasWhiteWon) {
+        int random = getBlackOffset();
+        int random2 = getWhiteOffset();
+        if(this.playedOffset != 0){
+            this.playedOffset = 0;
+        }
+        else if(!hasBlackWon && !hasWhiteWon) {
             if (isBlackNext) {
                 this.isBlackNext = false;
                 this.playedBlackSpots.add(stringToPosition(position));
@@ -67,7 +74,7 @@ public class GoModelController {
 
     public boolean isWhite(String id) {
         Position currentPosition = stringToPosition(id);
-        for (int i = 0; i < playedWhiteSpots.size(); i++) {
+        for (int i = 0; i < playedWhiteSpots.size() + getWhiteOffset(); i++) {
             if (playedWhiteSpots.get(i).getXPosition() == currentPosition.getXPosition() && playedWhiteSpots.get(i).getYPosition() == currentPosition.getYPosition()) {
                 return true;
             }
@@ -78,7 +85,7 @@ public class GoModelController {
 
     public boolean isBlack(String id) {
         Position currentPosition = stringToPosition(id);
-        for (int i = 0; i < playedBlackSpots.size(); i++) {
+        for (int i = 0; i < playedBlackSpots.size() + getBlackOffset(); i++) {
             if (playedBlackSpots.get(i).getXPosition() == currentPosition.getXPosition() && playedBlackSpots.get(i).getYPosition() == currentPosition.getYPosition()) {
                 return true;
             }
@@ -501,4 +508,54 @@ public class GoModelController {
     }
 
 
+    public void forward() {
+        if(this.playedOffset < 0) {
+            this.playedOffset++;
+
+        }
+    }
+
+    public void back() {
+        if(this.playedOffset + this.playedSpots.size() > 0) {
+            this.playedOffset--;
+        }
+    }
+
+    public String getLastPlayedInHistory() {
+        if (this.lastPlayed == null) return null;
+        if (this.playedSpots.size() + playedOffset == 0) return null;
+        return positionToString(playedSpots.get(playedSpots.size()+playedOffset-1));
+    }
+
+    private int getWhiteOffset(){
+        int whiteOffset = 0;
+        if(this.playedOffset < 0) {
+            if(playedOffset % 2 == -1 && isBlackNext) {
+                whiteOffset = this.playedOffset / 2 - 1;
+            } else {
+                whiteOffset = this.playedOffset / 2;
+            }
+        }
+        return whiteOffset;
+    }
+
+    private int getBlackOffset(){
+        int blackOffset = 0;
+        if(this.playedOffset < 0) {
+            if(playedOffset % 2 == -1 && !isBlackNext) {
+                blackOffset = this.playedOffset / 2 - 1;
+            } else {
+                blackOffset = this.playedOffset / 2;
+            }
+        }
+        return blackOffset;
+    }
+
+    public int getOffset() {
+        return playedOffset;
+    }
+
+    public void setOffset(int currentHistoryOffset) {
+        playedOffset = currentHistoryOffset;
+    }
 }
