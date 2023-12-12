@@ -360,6 +360,7 @@ public class GoModelControllerTest {
         //Act
         controller.setWinner(Teams.WHITE);
         //Assert
+        assertTrue(controller.isGameOver());
         assertTrue(controller.hasWhiteWon());
     }
 
@@ -370,6 +371,7 @@ public class GoModelControllerTest {
         //Act
         controller.setWinner(Teams.BLACK);
         //Assert
+        assertTrue(controller.isGameOver());
         assertTrue(controller.hasBlackWon());
     }
 
@@ -393,5 +395,8 @@ public class GoModelControllerTest {
         controller.cancel();
         //Assert
         assertFalse(controller.isPlayed("a1"));
+        assertEquals(0, controller.getPlayedBlackSpots().size());
+        assertEquals(0, controller.getPlayedWhiteSpots().size());
+
     }
 }
