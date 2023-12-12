@@ -8,14 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import ca.csfoy.tp2.R;
 import ca.csfoy.tp2.mc.Coordinates;
 import ca.csfoy.tp2.mc.GoModelController;
+import ca.csfoy.tp2.mc.Teams;
 
 public class GameActivity extends AppCompatActivity implements GoView {
     public final int GAME_DIMENSIONS = 9;
     private ImageButton[][] goBoard = new ImageButton[GAME_DIMENSIONS][GAME_DIMENSIONS];
 
+    private Button resignButton;
+    private Button cancelButton;
     private Button playButton;
     private ImageButton currentPlay;
     private GoModelController controller = new GoModelController();
@@ -25,8 +30,13 @@ public class GameActivity extends AppCompatActivity implements GoView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
+        this.resignButton = findViewById(R.id.resignButton);
         this.playButton = findViewById(R.id.playButton);
+        this.cancelButton = findViewById(R.id.cancelButton);
+
         playButton.setOnClickListener(this::OnPlay);
+        resignButton.setOnClickListener(this::OnResign);
+        cancelButton.setOnClickListener(this::OnCancel);
 
         for(int i = 0; i < GAME_DIMENSIONS; i++){
             for(int j = 1; j <= GAME_DIMENSIONS; j++) {
@@ -42,13 +52,25 @@ public class GameActivity extends AppCompatActivity implements GoView {
             controller.setLastPlayed(savedInstanceState.getString("LAST_PLAYED"));
             controller.setWhitePlayed(savedInstanceState.getStringArrayList("PLAYED_WHITE"));
             controller.setBlackPlayed(savedInstanceState.getStringArrayList("PLAYED_BLACK"));
+            controller.updatePlayedSpots();
+
+            if(savedInstanceState.getBoolean("HAS_BLACK_WON")){
+                controller.setWinner(Teams.BLACK);
+            }
+            else if(savedInstanceState.getBoolean("HAS_WHITE_WON")){
+                controller.setWinner(Teams.WHITE);
+            }
+            else{
+                controller.setWinner(null);
+            }
 
         }
 
     }
-
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean("HAS_WHITE_WON", controller.hasWhiteWon());
+        outState.putBoolean("HAS_BLACK_WON", controller.hasBlackWon());
         outState.putBoolean("IS_BLACK_NEXT",controller.isBlackNext());
         outState.putStringArrayList("PLAYED_WHITE", controller.getPlayedWhiteSpots());
         outState.putStringArrayList("PLAYED_BLACK", controller.getPlayedBlackSpots());
@@ -82,26 +104,38 @@ public class GameActivity extends AppCompatActivity implements GoView {
 
 
     private void OnClickBoard(View view) {
-        this.update();
-        ImageButton currentButton = (ImageButton) view;
-        int id = currentButton.getId();
-        if(!controller.isPlayed(getPositionFromResource(id))) {
-            if (controller.isBlackNext()) {
-                currentButton.setImageResource(R.mipmap.go_black_piece);
-                currentButton.setImageAlpha(150);
-            } else {
-                currentButton.setImageResource(R.mipmap.go_white_piece);
-                currentButton.setImageAlpha(150);
-            }
+        if(!controller.isGameOver()){
+            this.update();
+            ImageButton currentButton = (ImageButton) view;
+            int id = currentButton.getId();
+            if(!controller.isPlayed(getPositionFromResource(id))) {
+                if (controller.isBlackNext()) {
+                    currentButton.setImageResource(R.mipmap.go_black_piece);
+                    currentButton.setImageAlpha(150);
+                } else {
+                    currentButton.setImageResource(R.mipmap.go_white_piece);
+                    currentButton.setImageAlpha(150);
+                }
 
-            this.currentPlay = currentButton;
-        }
-        else {
-            currentPlay = null;
+                this.currentPlay = currentButton;
+            }
+            else {
+                currentPlay = null;
+            }
         }
     }
 
     public void update() {
+        if(controller.isGameOver()){
+            if(controller.hasBlackWon()){
+                blackWin();
+            } else {
+                whiteWin();
+            }
+            resignButton.setText("New Game");
+            resignButton.setOnClickListener(this::OnNewGame);
+            cancelButton.setOnClickListener(null);
+        }
         for(int i = 0; i < GAME_DIMENSIONS; i++){
             for(int j = 0; j < GAME_DIMENSIONS; j++){
                 int currentId = goBoard[i][j].getId();
@@ -133,4 +167,38 @@ public class GameActivity extends AppCompatActivity implements GoView {
             }
         }
     }
+
+    private void OnNewGame(View view) {
+        this.controller = new GoModelController();
+        resignButton.setOnClickListener(this::OnResign);
+        cancelButton.setOnClickListener(this::OnCancel);
+        resignButton.setText("Resign");
+        this.update();
+    }
+
+    private void OnResign(View view) {
+        if(!controller.isBlackNext()){
+            controller.setWinner(Teams.BLACK);
+        }
+        else {
+            controller.setWinner(Teams.WHITE);
+        }
+        this.update();
+    }
+
+    private void blackWin() {
+        Snackbar snackbar = Snackbar.make(this, resignButton, "Black has won!", Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    private void whiteWin() {
+        Snackbar snackbar = Snackbar.make(this, resignButton, "White has won!", Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    private void OnCancel(View view) {
+        controller.cancel();
+        this.update();
+    }
+
 }

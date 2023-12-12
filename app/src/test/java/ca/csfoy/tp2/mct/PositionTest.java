@@ -34,6 +34,20 @@ public class PositionTest {
     }
 
     @Test
+    public void positionCanSetCoordinates() {
+        //Arrange
+        Position position = new Position(Coordinates.a, Coordinates.c);
+
+        //Act
+        position.setXPosition(Coordinates.a);
+        position.setYPosition(Coordinates.c);
+
+        //Assert
+        assertEquals(position.getXPosition(), Coordinates.a);
+        assertEquals(position.getYPosition(), Coordinates.c);
+    }
+
+    @Test
     public void positionCanReceiveNewCoordinates() {
         //Arrange
         Position position = new Position(Coordinates.a, Coordinates.c);

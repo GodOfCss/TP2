@@ -1,6 +1,8 @@
 package ca.csfoy.tp2.mc;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
     private Coordinates YPosition;
     private Coordinates XPosition;
 

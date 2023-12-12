@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class GoModelController {
     private boolean isBlackNext;
+    private boolean hasBlackWon;
+    private boolean hasWhiteWon;
 
     private ArrayList<Position> playedBlackSpots;
     private ArrayList<Position> playedWhiteSpots;
@@ -20,18 +22,20 @@ public class GoModelController {
     }
 
     public void play(String position) {
-        if (isBlackNext) {
-            this.isBlackNext = false;
-            this.playedBlackSpots.add(stringToPosition(position));
-            this.playedSpots.add(stringToPosition(position));
-            this.lastPlayed = stringToPosition(position);
-            this.captureBlack();
-        } else {
-            this.isBlackNext = true;
-            this.playedWhiteSpots.add(stringToPosition(position));
-            this.playedSpots.add(stringToPosition(position));
-            this.lastPlayed = stringToPosition(position);
-            this.captureWhite();
+        if(!hasBlackWon && !hasWhiteWon) {
+            if (isBlackNext) {
+                this.isBlackNext = false;
+                this.playedBlackSpots.add(stringToPosition(position));
+                this.playedSpots.add(stringToPosition(position));
+                this.lastPlayed = stringToPosition(position);
+                this.captureBlack();
+            } else {
+                this.isBlackNext = true;
+                this.playedWhiteSpots.add(stringToPosition(position));
+                this.playedSpots.add(stringToPosition(position));
+                this.lastPlayed = stringToPosition(position);
+                this.captureWhite();
+            }
         }
 
     }
@@ -61,12 +65,13 @@ public class GoModelController {
         return false;
     }
 
-    private boolean isWhite(String id) {
+    public boolean isWhite(String id) {
         Position currentPosition = stringToPosition(id);
         for (int i = 0; i < playedWhiteSpots.size(); i++) {
             if (playedWhiteSpots.get(i).getXPosition() == currentPosition.getXPosition() && playedWhiteSpots.get(i).getYPosition() == currentPosition.getYPosition()) {
                 return true;
             }
+
         }
         return false;
     }
@@ -106,13 +111,13 @@ public class GoModelController {
     }
 
     public ArrayList<String> getPlayedBlackSpots() {
-        ArrayList<String> playedWhite = new ArrayList<String>();
+        ArrayList<String> playedBlack = new ArrayList<String>();
 
-        for (int i = 0; i < playedWhiteSpots.size(); i++) {
-            playedWhite.add(positionToString(playedWhiteSpots.get(i)));
+        for (int i = 0; i < playedBlackSpots.size(); i++) {
+            playedBlack.add(positionToString(playedBlackSpots.get(i)));
         }
 
-        return playedWhite;
+        return playedBlack;
     }
 
     public void setNext(boolean isBlackNext) {
@@ -127,6 +132,7 @@ public class GoModelController {
         for (int i = 0; i < playedWhite.size(); i++) {
             playedWhiteSpots.add(stringToPosition(playedWhite.get(i)));
         }
+        updatePlayedSpots();
     }
 
 
@@ -134,12 +140,18 @@ public class GoModelController {
         for (int i = 0; i < playedBlack.size(); i++) {
             playedBlackSpots.add(stringToPosition(playedBlack.get(i)));
         }
+        updatePlayedSpots();
+    }
+
+    public void updatePlayedSpots() {
+        this.playedSpots = new ArrayList<Position>(this.playedBlackSpots);
+        this.playedSpots.addAll(this.playedWhiteSpots);
     }
 
     /**
      * Regarde quelle piece sont blanches a ses alentours et tente de les capturer
      */
-    public void captureBlack() {
+    private void captureBlack() {
         if(lastPlayed != null) {
             ArrayList<Position> positionCapturedPieces = new ArrayList<Position>();
 
@@ -152,6 +164,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionLeft() != null) {
                     if (lastPlayed.getPositionLeft().equals(pieceToCheck)) {
                         if (checkCapturedWhite(pieceToCheck, null)) { //Regarde si la piece peut etre capturer
+                            hasBlackWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null)); //Ajouter piece(s) a la liste de capture
                             capturePieces(positionCapturedPieces); //Capture les pieces
                         }
@@ -160,6 +173,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionRight() != null) {
                     if (lastPlayed.getPositionRight().equals(pieceToCheck)) {
                         if (checkCapturedWhite(pieceToCheck, null)) {
+                            hasBlackWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                         }
@@ -168,6 +182,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionUp() != null) {
                     if (lastPlayed.getPositionUp().equals(pieceToCheck)) {
                         if (checkCapturedWhite(pieceToCheck, null)) {
+                            hasBlackWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                         }
@@ -176,6 +191,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionDown() != null) {
                     if (lastPlayed.getPositionDown().equals(pieceToCheck)) {
                         if (checkCapturedWhite(pieceToCheck, null)) {
+                            hasBlackWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                         }
@@ -189,7 +205,7 @@ public class GoModelController {
     /**
      * Regarde quelle piece sont noires a ses alentours et tente de les capturer
      */
-    public void captureWhite() {
+    private void captureWhite() {
         if(lastPlayed != null) {
             ArrayList<Position> positionCapturedPieces = new ArrayList<Position>();
 
@@ -202,6 +218,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionLeft() != null) {
                     if (lastPlayed.getPositionLeft().equals(pieceToCheck)) {
                         if (checkCapturedBlack(pieceToCheck, null)) {
+                            hasWhiteWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                             i = 0;
@@ -211,6 +228,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionRight() != null) {
                     if (lastPlayed.getPositionRight().equals(pieceToCheck)) {
                         if (checkCapturedBlack(pieceToCheck, null)) {
+                            hasWhiteWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                             i = 0;
@@ -220,6 +238,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionUp() != null) {
                     if (lastPlayed.getPositionUp().equals(pieceToCheck)) {
                         if (checkCapturedBlack(pieceToCheck, null)) {
+                            hasWhiteWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                             i = 0;
@@ -230,6 +249,7 @@ public class GoModelController {
                 if (lastPlayed.getPositionDown() != null) {
                     if (lastPlayed.getPositionDown().equals(pieceToCheck)) {
                         if (checkCapturedBlack(pieceToCheck, null)) {
+                            hasWhiteWon = true;
                             positionCapturedPieces.addAll(getCapturedList(pieceToCheck, null));
                             capturePieces(positionCapturedPieces);
                             i = 0;
@@ -260,16 +280,6 @@ public class GoModelController {
         }
     }
 
-    private ArrayList<String> getStringsFromPositions(ArrayList<Position> positions) {
-        ArrayList<String> strings = new ArrayList<String>();
-
-        for(int i = 0; i < positions.size(); i++){
-            strings.add(positionToString(positions.get(i)));
-        }
-
-        return strings;
-    }
-
     private ArrayList<Position> getCapturedList(Position pieceToCheck, ArrayList<Position> checkedSpots) {
         boolean isBlack = false;
         if (checkedSpots == null) checkedSpots = new ArrayList<Position>();
@@ -282,35 +292,43 @@ public class GoModelController {
 
         for (int i = 0; i < playedSpots.size(); i++) {
             Position nextPosition = playedSpots.get(i);
-            if (pieceToCheck.getPositionRight().equals(nextPosition)) {
-                    if(!checkedSpots.contains(nextPosition)) {
+            if(pieceToCheck.getPositionRight() != null) {
+                if (pieceToCheck.getPositionRight().equals(nextPosition)) {
+                    if (!checkedSpots.contains(nextPosition)) {
                         if (isBlack == isBlack(positionToString(nextPosition))) {
                             if (!isBlack) getCapturedList(nextPosition, checkedSpots);
-                            else if (isBlack) getCapturedList(nextPosition, checkedSpots);
+                            else getCapturedList(nextPosition, checkedSpots);
                         }
                     }
+                }
             }
-            else if (pieceToCheck.getPositionLeft().equals(nextPosition)) {
-                if(!checkedSpots.contains(nextPosition)) {
-                    if (isBlack == isBlack(positionToString(nextPosition))) {
-                        if (!isBlack) getCapturedList(nextPosition, checkedSpots);
-                        else if (isBlack) getCapturedList(nextPosition, checkedSpots);
+            if(pieceToCheck.getPositionLeft() != null) {
+                if (pieceToCheck.getPositionLeft().equals(nextPosition)) {
+                    if (!checkedSpots.contains(nextPosition)) {
+                        if (isBlack == isBlack(positionToString(nextPosition))) {
+                            if (!isBlack) getCapturedList(nextPosition, checkedSpots);
+                            else getCapturedList(nextPosition, checkedSpots);
+                        }
                     }
                 }
             }
-            else if (pieceToCheck.getPositionUp().equals(nextPosition)) {
-                if(!checkedSpots.contains(nextPosition)) {
-                    if (isBlack == isBlack(positionToString(nextPosition))) {
-                        if (!isBlack) getCapturedList(nextPosition, checkedSpots);
-                        else if (isBlack) getCapturedList(nextPosition, checkedSpots);
+            if(pieceToCheck.getPositionUp() != null) {
+                if (pieceToCheck.getPositionUp().equals(nextPosition)) {
+                    if (!checkedSpots.contains(nextPosition)) {
+                        if (isBlack == isBlack(positionToString(nextPosition))) {
+                            if (!isBlack) getCapturedList(nextPosition, checkedSpots);
+                            else getCapturedList(nextPosition, checkedSpots);
+                        }
                     }
                 }
-                }
-            else if (pieceToCheck.getPositionDown().equals(nextPosition)) {
-                if(!checkedSpots.contains(nextPosition)) {
-                    if (isBlack == isBlack(positionToString(nextPosition))) {
-                        if (!isBlack) getCapturedList(nextPosition, checkedSpots);
-                        else if (isBlack) getCapturedList(nextPosition, checkedSpots);
+            }
+            if (pieceToCheck.getPositionDown() != null) {
+                if (pieceToCheck.getPositionDown().equals(nextPosition)) {
+                    if (!checkedSpots.contains(nextPosition)) {
+                        if (isBlack == isBlack(positionToString(nextPosition))) {
+                            if (!isBlack) getCapturedList(nextPosition, checkedSpots);
+                            else getCapturedList(nextPosition, checkedSpots);
+                        }
                     }
                 }
             }
@@ -328,6 +346,11 @@ public class GoModelController {
         boolean isUpOccupied = false;
         boolean isDownOccupied = false;
 
+        if(piece.getPositionLeft() == null) isLeftOccupied = true;
+        if(piece.getPositionRight() == null) isRightOccupied = true;
+        if(piece.getPositionUp() == null) isUpOccupied = true;
+        if(piece.getPositionDown() == null) isDownOccupied = true;
+
         Coordinates currentY = lastPlayed.getYPosition();
         Coordinates currentX = lastPlayed.getXPosition();
 
@@ -343,7 +366,8 @@ public class GoModelController {
                         if (!checkCapturedWhite(positionToCheck, checkedSpots)) return false;
                     }
                 }
-            } if (piece.getPositionLeft() != null) {
+            }
+            if (piece.getPositionLeft() != null) {
                 if (piece.getPositionLeft().equals(positionToCheck)) {
                     isLeftOccupied = true;
                     if (!isBlack(positionToString(positionToCheck)) && !checkedSpots.contains(positionToCheck)) {
@@ -380,6 +404,12 @@ public class GoModelController {
         boolean isRightOccupied = false;
         boolean isUpOccupied = false;
         boolean isDownOccupied = false;
+
+        if(piece.getPositionLeft() == null) isLeftOccupied = true;
+        if(piece.getPositionRight() == null) isRightOccupied = true;
+        if(piece.getPositionUp() == null) isUpOccupied = true;
+        if(piece.getPositionDown() == null) isDownOccupied = true;
+
 
         Coordinates currentY = lastPlayed.getYPosition();
         Coordinates currentX = lastPlayed.getXPosition();
@@ -425,4 +455,45 @@ public class GoModelController {
         if(!isUpOccupied || !isDownOccupied || !isLeftOccupied || !isRightOccupied) return false;
         return true;
     }
+
+    public boolean hasBlackWon() {
+        return hasBlackWon;
+    }
+
+    public boolean hasWhiteWon() {
+        return hasWhiteWon;
+    }
+
+    public boolean isGameOver() {
+        if(!hasBlackWon && !hasWhiteWon) return false;
+        else return true;
+    }
+
+    public void cancel() {
+        if (lastPlayed != null) {
+            this.playedSpots.removeIf(playedSpots -> playedSpots.equals(lastPlayed));
+            this.playedWhiteSpots.removeIf(playedSpots -> playedSpots.equals(lastPlayed));
+            this.playedBlackSpots.removeIf(playedSpots -> playedSpots.equals(lastPlayed));
+            this.lastPlayed = null;
+            if(this.isBlackNext) this.isBlackNext = false;
+            else this.isBlackNext = true;
+        }
+    }
+
+    public void setWinner(Teams winningTeam) {
+        switch(winningTeam){
+            case WHITE:
+                this.hasWhiteWon = true;
+                break;
+            case BLACK:
+                this.hasBlackWon = true;
+                break;
+            default:
+                this.hasBlackWon = false;
+                this.hasWhiteWon = false;
+                break;
+        }
+    }
+
+
 }
