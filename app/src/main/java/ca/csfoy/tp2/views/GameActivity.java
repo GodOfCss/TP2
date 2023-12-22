@@ -19,6 +19,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
     public final int GAME_DIMENSIONS = 9;
     private ImageButton[][] goBoard = new ImageButton[GAME_DIMENSIONS][GAME_DIMENSIONS];
 
+    private boolean isWinnerAnnounced = false;
     private Button resignButton;
     private Button cancelButton;
     private Button playButton;
@@ -54,6 +55,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
         }
 
         if(savedInstanceState != null){
+            this.isWinnerAnnounced = savedInstanceState.getBoolean("WINNER_ANNOUNCED");
             controller.setNext(savedInstanceState.getBoolean("IS_BLACK_NEXT"));
             controller.setLastPlayed(savedInstanceState.getString("LAST_PLAYED"));
             controller.setWhitePlayed(savedInstanceState.getStringArrayList("PLAYED_WHITE"));
@@ -84,6 +86,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
         outState.putStringArrayList("PLAYED_BLACK", controller.getPlayedBlackSpots());
         outState.putString("LAST_PLAYED", controller.getLastPlayed());
         outState.putInt("CURRENT_HISTORY_OFFSET", controller.getOffset());
+        outState.putBoolean("WINNER_ANNOUNCED", this.isWinnerAnnounced);
         super.onSaveInstanceState(outState);
     }
 
@@ -143,7 +146,8 @@ public class GameActivity extends AppCompatActivity implements GoView {
         if(controller.getOffset() != 0) playButton.setText("Back To Play");
         else  playButton.setText("Play");
 
-        if(controller.isGameOver()){
+        if(controller.isGameOver() && !isWinnerAnnounced){
+            this.isWinnerAnnounced = true;
             if(controller.hasBlackWon()){
                 blackWin();
             } else {
@@ -191,6 +195,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
         cancelButton.setOnClickListener(this::OnCancel);
         resignButton.setText("Resign");
         this.update();
+        this.isWinnerAnnounced = false;
     }
 
     private void OnResign(View view) {
