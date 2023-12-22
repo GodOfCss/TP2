@@ -10,7 +10,10 @@ import android.widget.ImageButton;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 import ca.csfoy.tp2.R;
+import ca.csfoy.tp2.database.GoMove;
 import ca.csfoy.tp2.mc.Coordinates;
 import ca.csfoy.tp2.mc.GoModelController;
 import ca.csfoy.tp2.mc.Teams;
@@ -52,6 +55,14 @@ public class GameActivity extends AppCompatActivity implements GoView {
                 this.goBoard[i][j - 1] = (ImageButton) findViewById(id);
                 goBoard[i][j - 1].setOnClickListener(this::OnClickBoard);
             }
+        }
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            ArrayList<GoMove> goMoveArrayList = extras.getParcelableArrayList("GO_MOVE_LIST");
+
+            if(goMoveArrayList != null) controller.loadSavedGame(goMoveArrayList);
+
         }
 
         if(savedInstanceState != null){

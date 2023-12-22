@@ -2,6 +2,8 @@ package ca.csfoy.tp2.mc;
 
 import java.util.ArrayList;
 
+import ca.csfoy.tp2.database.GoMove;
+
 public class GoModelController {
     private boolean isBlackNext;
     private boolean hasBlackWon;
@@ -557,5 +559,22 @@ public class GoModelController {
 
     public void setOffset(int currentHistoryOffset) {
         playedOffset = currentHistoryOffset;
+    }
+
+    public void loadSavedGame(ArrayList<GoMove> goMoveArrayList) {
+        for(int i = 0; i < goMoveArrayList.size(); i++){
+            GoMove currentMove = goMoveArrayList.get(i);
+            playedSpots.add(currentMove.getPosition());
+            if(currentMove.getColor() == "white"){
+                playedWhiteSpots.add(currentMove.getPosition());
+            } else{
+                playedBlackSpots.add(currentMove.getPosition());
+            }
+
+            if(i == goMoveArrayList.size() - 1){
+                this.lastPlayed = currentMove.getPosition();
+            }
+
+        }
     }
 }
