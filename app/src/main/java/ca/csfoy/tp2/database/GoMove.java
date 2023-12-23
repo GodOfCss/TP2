@@ -21,6 +21,7 @@ public class GoMove implements Parcelable {
 
     protected GoMove(Parcel in) {
         color = in.readString();
+        position = in.readParcelable(Position.class.getClassLoader());
     }
 
     public static final Creator<GoMove> CREATOR = new Creator<GoMove>() {
@@ -41,9 +42,9 @@ public class GoMove implements Parcelable {
         Coordinates yPosition = null;
 
         for (int i = 0; i < Coordinates.values().length; i++) {
-            if (Coordinates.values()[i] == Coordinates.valueOf(String.valueOf(position.charAt(0))))
+            if (Coordinates.values()[i] == Coordinates.valueOf(String.valueOf(Character.toLowerCase(position.charAt(0)))))
                 xPosition = Coordinates.values()[i];
-            if (Coordinates.values()[i] == Coordinates.valueOf(String.valueOf(position.charAt(1))))
+            if (Coordinates.values()[i] == Coordinates.valueOf(String.valueOf(Character.toLowerCase(position.charAt(1)))))
                 yPosition = Coordinates.values()[i];
         }
 
@@ -79,5 +80,6 @@ public class GoMove implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(color);
+        parcel.writeParcelable(position, 10);
     }
 }

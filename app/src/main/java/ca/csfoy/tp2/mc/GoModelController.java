@@ -565,7 +565,7 @@ public class GoModelController {
         for(int i = 0; i < goMoveArrayList.size(); i++){
             GoMove currentMove = goMoveArrayList.get(i);
             playedSpots.add(currentMove.getPosition());
-            if(currentMove.getColor() == "white"){
+            if(currentMove.getColor().equals("white")){
                 playedWhiteSpots.add(currentMove.getPosition());
             } else{
                 playedBlackSpots.add(currentMove.getPosition());
@@ -573,6 +573,8 @@ public class GoModelController {
 
             if(i == goMoveArrayList.size() - 1){
                 this.lastPlayed = currentMove.getPosition();
+                if(currentMove.getColor().equals("white")) isBlackNext = true;
+                else isBlackNext = false;
             }
 
         }

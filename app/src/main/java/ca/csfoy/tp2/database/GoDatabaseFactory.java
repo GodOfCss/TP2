@@ -16,12 +16,12 @@ public class GoDatabaseFactory extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS goMove";
 
     public static final String SELECT_ALL_OF_SQL = "" +
-            "SELECT " +
-            " goMove.NO_PLAY, " +
-            " goMove.COLOR, " +
-            " goMove.STONE " +
-            "FROM " +
-            " goMove ";
+            "SELECT" +
+            " NO_PLAY," +
+            " COLOR," +
+            " STONE" +
+            " FROM" +
+            " goMove;";
 
     public GoDatabaseFactory(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

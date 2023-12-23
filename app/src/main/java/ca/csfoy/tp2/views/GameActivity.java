@@ -59,7 +59,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            ArrayList<GoMove> goMoveArrayList = extras.getParcelableArrayList("GO_MOVE_LIST");
+            ArrayList<GoMove> goMoveArrayList = extras.getParcelableArrayList("SAVE_LIST");
 
             if(goMoveArrayList != null) controller.loadSavedGame(goMoveArrayList);
 

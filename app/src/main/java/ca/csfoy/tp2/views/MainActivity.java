@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         this.playButton = (Button) findViewById(R.id.playButton);
         this.replayButton = (Button) findViewById(R.id.replayButton);
         this.databaseFactory = new GoDatabaseFactory(this);
-        this.database = databaseFactory.getWritableDatabase();
+        this.database = databaseFactory.getReadableDatabase();
 
         playButton.setOnClickListener(this::onPlayButton);
         replayButton.setOnClickListener(this::onReplayButton);
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("SAVE_LIST", retrieveGoMoves());
+
         startActivity(intent);
     }
 
@@ -65,15 +66,15 @@ public class MainActivity extends AppCompatActivity {
         {
             database.beginTransaction();
 
-            cursor = database.rawQuery(GoDatabaseFactory.SELECT_ALL_OF_SQL, new String[]{String.valueOf(0)});
-
-            while (cursor.moveToNext()) {
+            cursor = database.rawQuery(GoDatabaseFactory.SELECT_ALL_OF_SQL, new String[]{});
+            cursor.moveToFirst();
+            do {
                 goMove = new GoMove();
                 goMove.setColor(cursor.getString(1));
                 goMove.setPosition(cursor.getString(2));
 
                 goMoveList.add(goMove);
-            }
+            } while (cursor.moveToNext());
 
             database.setTransactionSuccessful();
         }
