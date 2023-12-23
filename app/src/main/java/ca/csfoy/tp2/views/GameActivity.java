@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import ca.csfoy.tp2.R;
@@ -26,9 +29,11 @@ public class GameActivity extends AppCompatActivity implements GoView {
     private Button resignButton;
     private Button cancelButton;
     private Button playButton;
+    private Button saveButton;
     private ImageButton backButton;
     private ImageButton forwardButton;
     private ImageButton currentPlay;
+
     private GoModelController controller = new GoModelController();
 
     @Override
@@ -41,12 +46,14 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.cancelButton = findViewById(R.id.cancelButton);
         this.forwardButton = findViewById(R.id.forwardButton);
         this.backButton = findViewById(R.id.backButton);
+        this.saveButton = findViewById(R.id.saveButton);
 
         playButton.setOnClickListener(this::OnPlay);
         resignButton.setOnClickListener(this::OnResign);
         cancelButton.setOnClickListener(this::OnCancel);
         backButton.setOnClickListener(this::OnBack);
         forwardButton.setOnClickListener(this::OnForward);
+        saveButton.setOnClickListener(this::OnSave);
 
         for(int i = 0; i < GAME_DIMENSIONS; i++){
             for(int j = 1; j <= GAME_DIMENSIONS; j++) {
@@ -88,6 +95,20 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.update();
 
     }
+
+    private void OnSave(View view){
+        try {
+            String save = controller.getSavedGame();
+
+            FileOutputStream fileout = openFileOutput("saved.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+            outputWriter.write(save);
+            outputWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean("HAS_WHITE_WON", controller.hasWhiteWon());

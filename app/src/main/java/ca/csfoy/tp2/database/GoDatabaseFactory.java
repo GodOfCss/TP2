@@ -23,6 +23,17 @@ public class GoDatabaseFactory extends SQLiteOpenHelper {
             " FROM" +
             " goMove;";
 
+    public static final String INSERT_SQL = "" +
+            "INSERT INTO goMove( " +
+            " NO_MOVE," +
+            " COLOR," +
+            " STONE," +
+            ") VALUES ( " +
+            " ?, " +
+            " ?, " +
+            " ? " +
+            ")";
+
     public GoDatabaseFactory(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

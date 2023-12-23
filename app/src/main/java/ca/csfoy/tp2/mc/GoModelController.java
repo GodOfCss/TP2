@@ -579,4 +579,8 @@ public class GoModelController {
 
         }
     }
+
+    public String getSavedGame() {
+        return null;
+    }
 }
