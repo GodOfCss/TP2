@@ -10,7 +10,13 @@ import android.widget.ImageButton;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
 import ca.csfoy.tp2.R;
+import ca.csfoy.tp2.database.GoMove;
 import ca.csfoy.tp2.mc.Coordinates;
 import ca.csfoy.tp2.mc.GoModelController;
 import ca.csfoy.tp2.mc.Teams;
@@ -19,12 +25,15 @@ public class GameActivity extends AppCompatActivity implements GoView {
     public final int GAME_DIMENSIONS = 9;
     private ImageButton[][] goBoard = new ImageButton[GAME_DIMENSIONS][GAME_DIMENSIONS];
 
+    private boolean isWinnerAnnounced = false;
     private Button resignButton;
     private Button cancelButton;
     private Button playButton;
+    private Button saveButton;
     private ImageButton backButton;
     private ImageButton forwardButton;
     private ImageButton currentPlay;
+
     private GoModelController controller = new GoModelController();
 
     @Override
@@ -37,12 +46,14 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.cancelButton = findViewById(R.id.cancelButton);
         this.forwardButton = findViewById(R.id.forwardButton);
         this.backButton = findViewById(R.id.backButton);
+        this.saveButton = findViewById(R.id.saveButton);
 
         playButton.setOnClickListener(this::OnPlay);
         resignButton.setOnClickListener(this::OnResign);
         cancelButton.setOnClickListener(this::OnCancel);
         backButton.setOnClickListener(this::OnBack);
         forwardButton.setOnClickListener(this::OnForward);
+        saveButton.setOnClickListener(this::OnSave);
 
         for(int i = 0; i < GAME_DIMENSIONS; i++){
             for(int j = 1; j <= GAME_DIMENSIONS; j++) {
@@ -53,7 +64,16 @@ public class GameActivity extends AppCompatActivity implements GoView {
             }
         }
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            ArrayList<GoMove> goMoveArrayList = extras.getParcelableArrayList("SAVE_LIST");
+
+            if(goMoveArrayList != null) controller.loadSavedGame(goMoveArrayList);
+
+        }
+
         if(savedInstanceState != null){
+            this.isWinnerAnnounced = savedInstanceState.getBoolean("WINNER_ANNOUNCED");
             controller.setNext(savedInstanceState.getBoolean("IS_BLACK_NEXT"));
             controller.setLastPlayed(savedInstanceState.getString("LAST_PLAYED"));
             controller.setWhitePlayed(savedInstanceState.getStringArrayList("PLAYED_WHITE"));
@@ -75,6 +95,20 @@ public class GameActivity extends AppCompatActivity implements GoView {
         this.update();
 
     }
+
+    private void OnSave(View view){
+        try {
+            String save = controller.getSavedGame();
+
+            FileOutputStream fileout = openFileOutput("saved.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+            outputWriter.write(save);
+            outputWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean("HAS_WHITE_WON", controller.hasWhiteWon());
@@ -84,6 +118,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
         outState.putStringArrayList("PLAYED_BLACK", controller.getPlayedBlackSpots());
         outState.putString("LAST_PLAYED", controller.getLastPlayed());
         outState.putInt("CURRENT_HISTORY_OFFSET", controller.getOffset());
+        outState.putBoolean("WINNER_ANNOUNCED", this.isWinnerAnnounced);
         super.onSaveInstanceState(outState);
     }
 
@@ -143,7 +178,8 @@ public class GameActivity extends AppCompatActivity implements GoView {
         if(controller.getOffset() != 0) playButton.setText("Back To Play");
         else  playButton.setText("Play");
 
-        if(controller.isGameOver()){
+        if(controller.isGameOver() && !isWinnerAnnounced){
+            this.isWinnerAnnounced = true;
             if(controller.hasBlackWon()){
                 blackWin();
             } else {
@@ -191,6 +227,7 @@ public class GameActivity extends AppCompatActivity implements GoView {
         cancelButton.setOnClickListener(this::OnCancel);
         resignButton.setText("Resign");
         this.update();
+        this.isWinnerAnnounced = false;
     }
 
     private void OnResign(View view) {

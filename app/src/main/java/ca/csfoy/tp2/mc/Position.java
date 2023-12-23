@@ -1,8 +1,11 @@
 package ca.csfoy.tp2.mc;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Position implements Serializable {
+public class Position implements Parcelable,Serializable {
     private Coordinates YPosition;
     private Coordinates XPosition;
 
@@ -10,6 +13,35 @@ public class Position implements Serializable {
         this.YPosition = YPosition;
         this.XPosition = XPosition;
     }
+
+    protected Position(Parcel in) {
+        XPosition = Coordinates.values()[in.readInt()];
+        YPosition = Coordinates.values()[in.readInt()];
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(XPosition.ordinal());
+        dest.writeInt(YPosition.ordinal());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Position> CREATOR = new Creator<Position>() {
+        @Override
+        public Position createFromParcel(Parcel in) {
+            return new Position(in);
+        }
+
+        @Override
+        public Position[] newArray(int size) {
+            return new Position[size];
+        }
+    };
+
     public Coordinates getYPosition() {
         return YPosition;
     }
